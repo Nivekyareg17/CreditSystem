@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.sena.introductionMaven.CrediSystem.CrudCreditSystem"
+      prefHeight="400.0" prefWidth="600.0"
+style="-fx-background-color:#EDEDED">
+
+    <!--Title-->
+    <GridPane alignment="BOTTOM_LEFT"
+              style="-fx-background-color: white; -fx-padding: 3;" maxHeight="60" minHeight="60">
+        <HBox spacing="10" alignment="CENTER">
+            <Text text="💵" style="-fx-font-size: 50;" />
+            <Text text="CredySistem" style="-fx-font-size: 16; -fx-fill: green;" />
+        </HBox>
+    </GridPane>
+
+
+    <!--Balance-->
+  <HBox spacing="20" >
+      <Text text="Register" />
+      <Button style="-fx-background-color:transparent; -fx-border-color:transparent; -fx-cursor:hand;" onAction="#verForm"> ➕ </Button>
+  </HBox>
+
+    <GridPane hgap="70" vgap="90" alignment="CENTER">
+        <VBox GridPane.columnIndex="0"
+              style="-fx-background-color:#F6E7E8; -fx-padding:20"
+              prefWidth="300" prefHeight="200">
+
+            <Label text="Yo debo" style="-fx-text-fill:red; -fx-font-size:24" textAlignment="CENTER"/>
+            <Label fx:id="saldoDeuda" style="-fx-text-fill:red; -fx-font-size:24" textAlignment="CENTER"/>
+
+        </VBox>
+
+        <VBox GridPane.columnIndex="1"
+              style="-fx-background-color:#E2F2EA; -fx-padding:20;"
+              prefWidth="300" prefHeight="200">
+
+            <Label text="Me deben" style="-fx-text-fill:green; -fx-font-size:24" textAlignment="CENTER"/>
+            <Label fx:id="saldoPrestado" text="" style="-fx-text-fill:green; -fx-font-size:24" textAlignment="CENTER"/>
+
+        </VBox>
+    </GridPane>
+
+
+
+ <!--Form-->
+
+    <MenuBar>
+        <Menu text="historial">
+            <MenuItem text="Ver tabla mis deudas" onAction="#verTabla" />
+            <MenuItem text="Ver tabla mis prestamos" onAction="#verTablaP" />
+        </Menu>
+    </MenuBar>
+
+    <StackPane prefHeight="400" prefWidth="400">
+
+        <!-- Formulario -->
+        <VBox fx:id="Formulario" styleClass="form" spacing="10" maxWidth="300" visible="false">
+            <HBox spacing="10">
+                <Label text="Id:"/>
+                <TextField fx:id="txtIdNumber" promptText="write your id" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Deudor:"/>
+                <TextField fx:id="txtFirstName" promptText="write your name" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Prestamista:"/>
+                <TextField fx:id="txtLastName" promptText="write last name" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Date:"/>
+                <TextField fx:id="txtIdDate" promptText="write date" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Monto:"/>
+                <TextField fx:id="txtSaldo" promptText="write saldo" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Tipo:"/>
+                <TextField fx:id="txtTypePrestamo" promptText="debo / me deben" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="20.0" alignment="CENTER">
+                <Button text="Save" onAction="#createDeudors"/>
+                <Button text="Update" onAction="#updateDeudor"/>
+            </HBox>
+        </VBox>
+
+        <!-- Tabla Deudores -->
+        <TableView fx:id="DeudorTable" visible="false" prefHeight="200" prefWidth="400">
+            <columns>
+                <TableColumn fx:id="colIdNumber" text="Id" prefWidth="100"/>
+                <TableColumn fx:id="colFirstName" text="First Name" prefWidth="100"/>
+                <TableColumn fx:id="colLastName" text="Last Name" prefWidth="100"/>
+                <TableColumn fx:id="colIdDate" text="Date" prefWidth="100"/>
+                <TableColumn fx:id="colSaldo" text="Saldo" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+        <!-- Tabla Prestamos -->
+        <TableView fx:id="PrestamoTable" visible="false" prefHeight="200" prefWidth="400">
+            <columns>
+                <TableColumn fx:id="colIdNumberP" text="Id" prefWidth="100"/>
+                <TableColumn fx:id="colFirstNameP" text="First Name" prefWidth="100"/>
+                <TableColumn fx:id="colLastNameP" text="Last Name" prefWidth="100"/>
+                <TableColumn fx:id="colIdDateP" text="Date" prefWidth="100"/>
+                <TableColumn fx:id="colSaldoP" text="Saldo" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+    </StackPane>
+
+
+
+    <Button text="Delete" onAction="#deleteDeudor" />
+
+
+</VBox>
